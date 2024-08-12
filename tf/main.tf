@@ -1,3 +1,21 @@
+terraform {
+  required_providers {
+    digitalocean = {
+      source = "digitalocean/digitalocean"
+      version = "~> 2.0"
+    }
+  }
+}
+
+provider "digitalocean" {
+  token = var.do_token
+}
+
+resource "digitalocean_ssh_key" "terraform" {
+  name = "terraform"
+  public_key = file("${var.ssh_key}.pub")
+}
+
 resource "digitalocean_droplet" "www" {
   image     = "ubuntu-24-04-x64"
   name      = "www"
@@ -19,12 +37,4 @@ resource "digitalocean_droplet" "www" {
 resource "digitalocean_domain" "www" {
   name       = var.domain_name
   ip_address = digitalocean_droplet.www.ipv4_address 
-}
-
-output "public_ip" {
-  value = digitalocean_droplet.www.ipv4_address
-}
-
-output "ssh_key" {
-  value = var.ssh_key
 }
