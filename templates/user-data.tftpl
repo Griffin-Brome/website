@@ -159,6 +159,34 @@ write_files:
       [Install]
       WantedBy=multi-user.target
 
+  - path: /etc/certbot/config.ini
+    content: |
+      email = ${ssl_renew_email}
+      domains = ${domain_name},www.${domain_name}
+      agree-tos = True
+      non-interactive = True
+      dns-digitalocean = True
+      dns-digitalocean-credentials = /data/digitalocean.ini
+
+  - path: /etc/certbot/digitalocean.ini
+    permissions: '0600'
+    owner: root:root
+    content: "dns_digitalocean_token = ${certbot_do_token}"
+
+  - path: /etc/nginx/nginx.conf
+    content: |
+      events {}
+      http {
+              server {
+                      listen 80;
+              }
+              server {
+                      listen 443 ssl;
+                      ssl_certificate_key /etc/letsencrypt/live/${domain_name}/privkey.pem;
+                      ssl_certificate /etc/letsencrypt/live/${domain_name}/fullchain.pem;
+              }
+      }
+
 runcmd:
   - [ systemctl, daemon-reload ]
   - [ systemctl, enable, kubelet.service ]

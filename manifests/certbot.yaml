@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: certbot
+  labels:
+    role: myrole
+spec:
+  hostNetwork: true
+  containers:
+    - name: certbot
+      image: certbot/dns-digitalocean
+      command: 
+        - certbot 
+        - certonly
+      args: 
+        - --config
+        - /etc/certbot/config.ini
+      volumeMounts:
+      - mountPath: /etc/certbot/config.ini
+        name: certbot-conf
+        readOnly: true
+      - mountPath: /data/digitalocean.ini
+        name: digitalocean-creds
+        readOnly: true
+      - mountPath: /etc/letsencrypt
+        name: etc-letsencrypt
+      - mountPath: /var/lib/letsencrypt
+        name: var-lib-letsencrypt
+  volumes:
+  - name: certbot-conf
+    hostPath: 
+      path: '/etc/certbot/config.ini'
+      type: 'File'
+  - name: digitalocean-creds
+    hostPath:
+      path: '/etc/certbot/digitalocean.ini'
+      type: 'File' 
+  - name: etc-letsencrypt
+    hostPath:
+      path: '/etc/letsencrypt'
+      type: 'DirectoryOrCreate'
+  - name: var-lib-letsencrypt
+    hostPath:
+      path: '/var/lib/letsencrypt'
+      type: 'DirectoryOrCreate'
+
