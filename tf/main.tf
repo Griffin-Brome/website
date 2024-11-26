@@ -23,11 +23,7 @@ resource "digitalocean_droplet" "www" {
   size   = "s-1vcpu-2gb"
   user_data = templatefile(
     "${path.module}/templates/user-data.tftpl",
-    {
-      certbot_do_token = var.certbot_do_token,
-      ssl_renew_email  = var.ssl_renew_email,
-      domain_name      = var.domain_name
-    }
+    {}
   )
   ssh_keys = [
     digitalocean_ssh_key.terraform.id
