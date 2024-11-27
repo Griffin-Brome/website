@@ -17,14 +17,11 @@ resource "digitalocean_ssh_key" "terraform" {
 }
 
 resource "digitalocean_droplet" "www" {
-  image  = "ubuntu-24-04-x64"
-  name   = "www"
-  region = var.region
-  size   = "s-1vcpu-2gb"
-  user_data = templatefile(
-    "${path.module}/templates/user-data.tftpl",
-    {}
-  )
+  image     = "ubuntu-24-04-x64"
+  name      = "www"
+  region    = var.region
+  size      = "s-1vcpu-1gb"
+  user_data = data.cloudinit_config.cloudinit.rendered
   ssh_keys = [
     digitalocean_ssh_key.terraform.id
   ]
