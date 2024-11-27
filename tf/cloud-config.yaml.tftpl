@@ -1,6 +1,9 @@
 #cloud-config
 # vi: ft=yaml
 
+fqdn: ${domain_name}
+prefer_fqdn_over_hostname: true
+
 packages:
   - caddy
 
