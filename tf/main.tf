@@ -31,3 +31,36 @@ resource "digitalocean_domain" "www" {
   name       = var.domain_name
   ip_address = digitalocean_droplet.www.ipv4_address
 }
+
+
+data "cloudinit_config" "cloudinit" {
+  gzip          = false
+  base64_encode = false
+
+  part {
+    filename     = "cloud-config.yaml"
+    content_type = "text/cloud-config"
+    content = templatefile(
+      "${path.module}/cloud-config.yaml.tftpl",
+      { domain_name = var.domain_name }
+    )
+  }
+
+  part {
+    filename     = "write-files"
+    content_type = "text/cloud-config"
+    content = yamlencode(
+      {
+        "write_files" : [
+          {
+            "path" : "/etc/caddy/Caddyfile",
+            "content" : templatefile(
+              "${path.module}/Caddyfile.tftpl",
+              { domain_name = var.domain_name }
+            )
+          }
+        ]
+      }
+    )
+  }
+}
