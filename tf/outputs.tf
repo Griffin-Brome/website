@@ -5,3 +5,7 @@ output "public_ip" {
 output "ssh_key" {
   value = var.ssh_key
 }
+
+output "url" {
+  value = "https://${var.domain_name}"
+}
