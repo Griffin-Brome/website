@@ -56,11 +56,11 @@ data "cloudinit_config" "cloudinit" {
       {
         "write_files" : [
           {
-            "path" : "/etc/caddy/Caddyfile",
-            "content" : templatefile(
-              "${path.module}/Caddyfile.tftpl",
-              { domain_name = var.domain_name }
-            )
+            "path" : "/etc/systemd/system/caddy.service.d/10-set-environment.conf",
+            "content" : <<-EOT
+              [Service]
+              Environment='SITE_ADDRESS=${var.domain_name}'
+            EOT
           }
         ]
       }
