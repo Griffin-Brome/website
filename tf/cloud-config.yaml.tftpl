@@ -4,6 +4,14 @@
 fqdn: ${domain_name}
 prefer_fqdn_over_hostname: true
 
+users:
+- name: admin
+  no_user_group: true
+  sudo: ALL=(ALL) NOPASSWD:ALL
+  ssh_authorized_keys:
+    - ${ssh_public_key}
+  shell: /bin/bash
+
 packages:
   - caddy
 

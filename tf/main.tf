@@ -42,7 +42,10 @@ data "cloudinit_config" "cloudinit" {
     content_type = "text/cloud-config"
     content = templatefile(
       "${path.module}/cloud-config.yaml.tftpl",
-      { domain_name = var.domain_name }
+      {
+        domain_name    = var.domain_name,
+        ssh_public_key = digitalocean_ssh_key.terraform.public_key
+      }
     )
   }
 
