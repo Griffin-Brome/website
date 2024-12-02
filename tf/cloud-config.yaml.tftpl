@@ -4,6 +4,16 @@
 fqdn: ${domain_name}
 prefer_fqdn_over_hostname: true
 
+apt:
+  sources:
+      source1:
+        keyid: 155B6D79CA56EA34
+        keyserver: https://dl.cloudsmith.io/public/caddy/stable/gpg.key
+        source: deb [signed-by=$KEY_FILE] https://dl.cloudsmith.io/public/caddy/stable/deb/debian any-version main
+packages:
+  - caddy
+  - ufw
+
 users:
 - name: admin
   no_user_group: true
@@ -12,12 +22,8 @@ users:
     - ${ssh_public_key}
   shell: /bin/bash
 
-packages:
-  - caddy
-
-apt:
-  sources:
-      source1:
-        keyid: 155B6D79CA56EA34
-        keyserver: https://dl.cloudsmith.io/public/caddy/stable/gpg.key
-        source: deb [signed-by=$KEY_FILE] https://dl.cloudsmith.io/public/caddy/stable/deb/debian any-version main
+runcmd:
+  - ufw allow ssh
+  - ufw allow http
+  - ufw allow https
+  - ufw enable

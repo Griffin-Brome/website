@@ -1,5 +1,3 @@
-# REMOVE BEFORE DEPLOYING TO PROD
-ca https://acme-staging-v02.api.letsencrypt.org/directory
-https://{$SITE_ADDRESS}:443
+{$SITE_ADDRESS}
 
 respond "Hello, world!"
