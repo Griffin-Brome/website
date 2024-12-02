@@ -17,5 +17,7 @@ packages:
 
 apt:
   sources:
-    source: "deb [signed-by=$KEY_FILE] https://dl.cloudsmith.io/public/caddy/stable/deb/debian any-version main"
-    keyid: 65760C51
+      source1:
+        keyid: 155B6D79CA56EA34
+        keyserver: https://dl.cloudsmith.io/public/caddy/stable/gpg.key
+        source: deb [signed-by=$KEY_FILE] https://dl.cloudsmith.io/public/caddy/stable/deb/debian any-version main
