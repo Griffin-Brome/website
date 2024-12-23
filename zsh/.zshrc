@@ -2,7 +2,6 @@ autoload -Uz compinit promptinit vcs_info
 autoload -z edit-command-line
 autoload -U +X bashcompinit && bashcompinit
 
-fpath+="$HOME/.local/share/zsh/user-functions"  # Install local completion scripts here
 compinit
 promptinit
 
@@ -20,7 +19,6 @@ function tmux () {
     fi
 }
 
-source_if_exists "$HOME/.shellrc" 
 source_if_exists '/usr/share/doc/fzf/examples/key-bindings.zsh'
 source_if_exists '/usr/share/doc/fzf/examples/completion.zsh'
 source_if_exists "$HOME/.cargo/env"
@@ -57,23 +55,21 @@ zstyle ':vcs_info:*' enable git
 
 PROMPT='%F{3}%3~ ${vcs_info_msg_0_}%f$ '
 
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+if [ -x "$(command -v pyenv)" ]; then
+	eval "$(pyenv init -)"
+fi
 command -v kubectl > /dev/null && source <(kubectl completion zsh)
 
 complete -o nospace -C /usr/bin/terraform terraform
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
-
-# Created by `pipx` on 2024-05-04 03:43:30
-export PATH="$PATH:/home/griffin/.local/bin"
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+alias ls='ls --color=auto'
+alias ll='ls -alF'
+alias la='ls -A'
+alias g='git'
+alias k='kubectl'
+alias grep='grep --color=auto'
+alias vi="nvim"
 
 # Local config
 source_if_exists "$HOME/.zshrc.local"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
