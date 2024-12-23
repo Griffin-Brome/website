@@ -37,6 +37,7 @@ nnoremap k gk
 
 nnoremap <C-p> :Files<Cr>
 nnoremap <C-g> :Git<Cr>
+nnoremap gb :Buffers<Cr>
 
 " Netrw (file browser)
 let g:netrw_liststyle=3   " Tree style
