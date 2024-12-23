@@ -76,6 +76,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-vinegar'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'nvim-treesitter/nvim-treesitter', Cond(has('nvim'), { 'do': ':TSUpdate' })
+Plug 'neovim/nvim-lspconfig', Cond(has('nvim'))
 Plug 'junegunn/fzf.vim'
 
 " Initialize plugin system

@@ -15,7 +15,7 @@ alias la='ls -A'
 alias g='git'
 alias k='kubectl'
 alias grep='grep --color=auto'
-alias vi="vim"
+alias vi="nvim"
 
 #: }}}
 
