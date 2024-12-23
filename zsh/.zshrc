@@ -6,9 +6,17 @@ compinit
 promptinit
 
 function source_if_exists() {
-	if [[ -e "$1" ]]; then
-	       source "$1"
-	fi	       
+    if [[ -e "$1" ]]; then
+        source "$1"
+    fi	       
+}
+
+function tmux () {
+    if [ "$#" -eq 0 ]; then
+        command tat
+    else;
+        command tmux "$@"
+    fi
 }
 
 
