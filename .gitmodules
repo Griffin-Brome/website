@@ -1,0 +1,15 @@
+[submodule "zsh/plugins/zsh-completions"]
+	path = zsh/plugins/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions.git
+[submodule "vim/.vim/pack/plugins/start/fugitive"]
+	path = vim/.vim/pack/plugins/start/fugitive
+	url = https://tpope.io/vim/fugitive.git
+[submodule "vim/.vim/pack/plugins/start/vim-sensible"]
+	path = vim/.vim/pack/plugins/start/vim-sensible
+	url = https://github.com/tpope/vim-sensible.git
+[submodule "vim/.vim/pack/plugins/start/vim-surround"]
+	path = vim/.vim/pack/plugins/start/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "vim/.vim/pack/plugins/start/vim-commentary"]
+	path = vim/.vim/pack/plugins/start/vim-commentary
+	url = https://github.com/tpope/vim-commentary.git

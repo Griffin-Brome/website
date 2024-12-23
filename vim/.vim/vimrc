@@ -1,0 +1,45 @@
+"        _
+" __   _(_)_ __ ___  _ __ ___
+" \ \ / / | '_ ` _ \| '__/ __|
+"  \ V /| | | | | | | | | (__
+" (_)_/ |_|_| |_| |_|_|  \___|
+"
+
+filetype plugin indent on
+syntax on
+
+set ruler
+set showcmd
+set hidden
+set wildmenu
+set wildoptions=pum
+set incsearch
+set hlsearch
+set splitright
+set splitbelow
+set laststatus=2
+set expandtab smarttab  " Use spaces instead of tabs, but make it _feel_ like tabs
+set softtabstop=-1  " Use value of 'shiftwidth' to determine indent size
+set tags=tags
+set path=.
+set path+=**
+set wildignore=*/.git/*,*/venv/*,*.pyc,*/__pycache__/*,*/node_modules/*
+set regexpengine=0
+set foldlevelstart=99  " Start with all folds open
+set nosmartindent  " 'smart' is a misnomer
+set backspace=indent,eol,start  " backspace works like other programs
+set background=dark  " Make sure colours aren't weird when using a dark terminal theme
+set mouse=a
+
+nnoremap Y y$
+nnoremap <silent> <C-l> :nohlsearch<CR>
+
+nnoremap j gj
+nnoremap k gk
+" Replace the check for a tags file in the parent directory of the current
+" file with a check in every ancestor directory.
+if has('path_extra') && (',' . &g:tags . ',') =~# ',\./tags,'
+  setglobal tags-=./tags tags-=./tags; tags^=./tags;
+endif
+
+" vim: fdm=marker sw=2 fdls=-1

@@ -1,0 +1,15 @@
+\set QUIET 1
+
+\set ON_ERROR_STOP 1
+
+\set PROMPT1 '%n@%M %~ %# '
+\set PROMPT2 '%w'
+\pset null ∅
+\pset linestyle unicode
+\pset border 2
+\timing on
+\x auto
+\setenv PSQL_PAGER 'less'
+
+\unset QUIET
+
