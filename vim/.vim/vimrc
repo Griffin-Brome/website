@@ -20,17 +20,17 @@ set hlsearch
 set splitright
 set splitbelow
 set laststatus=2
-set expandtab smarttab  " Use spaces instead of tabs, but make it _feel_ like tabs
-set softtabstop=-1  " Use value of 'shiftwidth' to determine indent size
+set expandtab smarttab          " Use spaces instead of tabs, but make it _feel_ like tabs
+set softtabstop=-1              " Use value of 'shiftwidth' to determine indent size
 set path=.
 set path+=**
 set wildignore=*/.git/*,*/venv/*,*.pyc,*/__pycache__/*,*/node_modules/*
 set regexpengine=0
-set foldlevelstart=99  " Start with all folds open
-set nosmartindent  " 'smart' is a misnomer
+set foldlevelstart=99           " Start with all folds open
 set backspace=indent,eol,start  " backspace works like other programs
-set background=dark  " Make sure colours aren't weird when using a dark terminal theme
-set mouse=nv
+set background=dark             " Make sure colours aren't weird when using a dark terminal theme
+set mouse=nv                    " No mouse in insert mode 
+set autoindent
 
 
 nnoremap Y y$
@@ -44,6 +44,14 @@ nnoremap <Leader>b :ls<CR>:b<Space>
 
 " Quckly fuzzy search for files
 nnoremap <Leader>e :e **/*
+
+" Netrw (file browser)
+
+let g:netrw_altfile=1     " CTRL-^ never goes to netrw
+let g:netrw_banner=0      " No banner
+let g:netrw_liststyle=3   " Tree style
+nnoremap - :Explore<CR>
+
 
 
 " Install vim-plug if not found
