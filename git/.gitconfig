@@ -3,7 +3,6 @@
 	excludesfile = ~/.gitignore_global
 [init]
 	defaultBranch = main
-	templatedir = ~/.git_template
 [alias]
 	sw = switch
 	ci = commit
