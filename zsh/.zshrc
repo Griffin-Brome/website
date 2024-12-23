@@ -2,6 +2,7 @@ autoload -Uz compinit promptinit vcs_info
 autoload -z edit-command-line
 autoload -U +X bashcompinit && bashcompinit
 
+fpath+="$HOME/.local/share/zsh/user-functions"  # Install local completion scripts here
 compinit
 promptinit
 
@@ -56,12 +57,9 @@ zstyle ':vcs_info:*' enable git
 
 PROMPT='%F{3}%3~ ${vcs_info_msg_0_}%f$ '
 
-
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 command -v kubectl > /dev/null && source <(kubectl completion zsh)
-
-
 
 complete -o nospace -C /usr/bin/terraform terraform
 
