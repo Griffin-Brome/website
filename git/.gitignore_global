@@ -82,3 +82,6 @@ cscope.po.out
 *.tar
 *.tar.gz
 *.gz
+
+.envrc
+.direnv/*
