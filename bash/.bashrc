@@ -107,9 +107,6 @@ if command -v pyenv >/dev/null; then
     eval "$(pyenv virtualenv-init -)"
 fi
 
-if [ -f "$HOME/.cargo/env" ]; then
-     . "$HOME/.cargo/env"
+if [ -f "$HOME/.bashrc.local" ]; then
+    . "$HOME/.bashrc.local"
 fi
-
-
-complete -C /usr/bin/terraform terraform
