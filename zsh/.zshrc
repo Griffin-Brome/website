@@ -1,4 +1,7 @@
 autoload -Uz compinit promptinit vcs_info
+autoload -z edit-command-line
+autoload -U +X bashcompinit && bashcompinit
+
 compinit
 promptinit
 
@@ -19,6 +22,15 @@ source_if_exists "$HOME/.aliases"
 
 # Case insensitive, unless capital letter used
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select
+
+setopt MENU_COMPLETE        # Automatically highlight first element of completion menu
+setopt AUTO_LIST            # Automatically list choices on ambiguous completion.
+setopt COMPLETE_IN_WORD     # Complete from both ends of a word.
+setopt LIST_PACKED
+setopt LIST_ROWS_FIRST
 
 alias pygrep='find . -name "*.py" | xargs grep -n' 
 setopt HIST_SAVE_NO_DUPS    # Only save distinct commands to history
@@ -27,7 +39,6 @@ setopt PROMPT_SUBST
 bindkey -e   # Emacs movement
 
 # Use C-x C-e to edit current command in $VISUAL
-autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
 
@@ -45,7 +56,6 @@ PROMPT='%F{3}%3~ ${vcs_info_msg_0_}%f$ '
 
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-
 command -v kubectl > /dev/null && source <(kubectl completion zsh)
 
 source_if_exists '/usr/share/doc/fzf/examples/key-bindings.zsh'
@@ -56,7 +66,6 @@ source_if_exists "$HOME/.cargo/env"
 # Local config
 source_if_exists "$HOME/.zshrc.local"
 
-autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
 
 # The next line updates PATH for the Google Cloud SDK.
