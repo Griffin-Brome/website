@@ -20,12 +20,6 @@ function tmux () {
 }
 
 
-# Aliases
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-alias k='kubectl'
-alias g='git'
-
 source_if_exists "$HOME/.aliases"
 
 # Case insensitive, unless capital letter used
@@ -40,7 +34,6 @@ setopt COMPLETE_IN_WORD     # Complete from both ends of a word.
 setopt LIST_PACKED
 setopt LIST_ROWS_FIRST
 
-alias pygrep='find . -name "*.py" | xargs grep -n' 
 setopt HIST_SAVE_NO_DUPS    # Only save distinct commands to history
 setopt PROMPT_SUBST
 
@@ -81,3 +74,7 @@ if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/
 
 # The next line enables shell command completion for gcloud.
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+
+# Created by `pipx` on 2024-05-04 03:43:30
+export PATH="$PATH:/home/griffin/.local/bin"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"

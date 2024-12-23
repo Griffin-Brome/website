@@ -1,4 +1,0 @@
-# vi: ft=sh
-alias ls='ls --color=auto'
-alias g='git'
-alias k='kubectl'
