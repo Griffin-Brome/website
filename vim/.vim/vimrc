@@ -5,6 +5,8 @@
 " (_)_/ |_|_| |_| |_|_|  \___|
 "
 
+let mapleader = ','
+
 filetype plugin indent on
 syntax on
 
@@ -30,11 +32,18 @@ set backspace=indent,eol,start  " backspace works like other programs
 set background=dark  " Make sure colours aren't weird when using a dark terminal theme
 set mouse=nv
 
+
 nnoremap Y y$
-nnoremap <silent> <C-l> :nohlsearch<CR>
+nnoremap <silent> <Leader>l :nohlsearch<CR>
 
 nnoremap j gj
 nnoremap k gk
+
+" Quickly switch buffers - https://vi.stackexchange.com/a/2187
+nnoremap <Leader>b :ls<CR>:b<Space>
+
+" Quckly fuzzy search for files
+nnoremap <Leader>e :e **/*
 
 
 " Install vim-plug if not found
