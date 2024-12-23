@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+#
+# pygrep - grep python files
+
+set -euo pipefail
+
+
+dir="${2:-$(pwd)}"
+
+find $dir -name '*.py' | xargs grep -in -- $1
