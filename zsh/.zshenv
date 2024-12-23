@@ -6,17 +6,25 @@ fpath+=(
 	"$HOME/.local/share/zsh/site-functions"  # Install local completion scripts here
 )
 
-export VISUAL="nvim"
-export EDITOR="nvim"
+if [ -x "$(command -v nvim)" ]; then
+	export VISUAL='nvim'
+	export EDITOR='nvim'
+else;
+	export VISUAL='vi'
+	export EDITOR='vi'
+fi
+
 export PYENV_ROOT="$HOME/.pyenv"
 export HISTFILE=~/.histfile
 export HISTSIZE=1000000000
 export SAVEHIST=1000000000
 export LESS="-RXF"
 export NEOVIM_PYTHON=0  # This should be overridden locally
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
 
-if [ -x "$(command -v fzf)" ]; then
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
+if [ -x "$(command -v fd)" ]; then
+	export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden'
+	export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
 fi
 
 # Needed to make pipx work with pyenv

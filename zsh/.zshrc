@@ -64,12 +64,7 @@ complete -o nospace -C /usr/bin/terraform terraform
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 alias ls='ls --color=auto'
-alias ll='ls -alF'
-alias la='ls -A'
-alias g='git'
 alias k='kubectl'
-alias grep='grep --color=auto'
-alias vi="nvim"
-
-# Local config
-source_if_exists "$HOME/.zshrc.local"
+if [ -x "$(command -v nvim)" ]; then
+	alias vi="nvim"
+fi
