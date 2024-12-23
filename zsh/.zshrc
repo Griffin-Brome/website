@@ -2,15 +2,20 @@ autoload -Uz compinit promptinit vcs_info
 compinit
 promptinit
 
-if [[ -a "$HOME/.aliases" ]]; then
-	source "$HOME/.aliases"
-fi
+function source_if_exists() {
+	if [[ -e "$1" ]]; then
+	       source "$1"
+	fi	       
+}
+
 
 # Aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias k='kubectl'
 alias g='git'
+
+source_if_exists "$HOME/.aliases"
 
 # Case insensitive, unless capital letter used
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -20,6 +25,11 @@ setopt HIST_SAVE_NO_DUPS    # Only save distinct commands to history
 setopt PROMPT_SUBST
 
 bindkey -e   # Emacs movement
+
+# Use C-x C-e to edit current command in $VISUAL
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
 
 precmd () { vcs_info }
 
@@ -38,14 +48,13 @@ eval "$(pyenv init -)"
 
 command -v kubectl > /dev/null && source <(kubectl completion zsh)
 
-if [[ -a "$HOME/.cargo/env" ]]; then
-        source "$HOME/.cargo/env"
-fi
+source_if_exists '/usr/share/doc/fzf/examples/key-bindings.zsh'
+source_if_exists '/usr/share/doc/fzf/examples/completion.zsh'
+
+source_if_exists "$HOME/.cargo/env"
 
 # Local config
-if [[ -a "$HOME/.zshrc.local" ]]; then
-	source "$HOME/.zshrc.local"
-fi
+source_if_exists "$HOME/.zshrc.local"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
