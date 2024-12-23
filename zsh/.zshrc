@@ -19,8 +19,10 @@ function tmux () {
     fi
 }
 
-
-source_if_exists "$HOME/.aliases"
+source_if_exists "$HOME/.shellrc" 
+source_if_exists '/usr/share/doc/fzf/examples/key-bindings.zsh'
+source_if_exists '/usr/share/doc/fzf/examples/completion.zsh'
+source_if_exists "$HOME/.cargo/env"
 
 # Case insensitive, unless capital letter used
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -59,13 +61,7 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 command -v kubectl > /dev/null && source <(kubectl completion zsh)
 
-source_if_exists '/usr/share/doc/fzf/examples/key-bindings.zsh'
-source_if_exists '/usr/share/doc/fzf/examples/completion.zsh'
 
-source_if_exists "$HOME/.cargo/env"
-
-# Local config
-source_if_exists "$HOME/.zshrc.local"
 
 complete -o nospace -C /usr/bin/terraform terraform
 
@@ -78,3 +74,6 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-clou
 # Created by `pipx` on 2024-05-04 03:43:30
 export PATH="$PATH:/home/griffin/.local/bin"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+# Local config
+source_if_exists "$HOME/.zshrc.local"

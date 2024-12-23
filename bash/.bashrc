@@ -8,6 +8,11 @@ case $- in
       *) return;;
 esac
 
+
+if [ -f ~/.shellrc ]; then
+    . ~/.shellrc
+fi
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -100,8 +105,6 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-EDITOR='vi'
-VISUAL="$EDITOR"
 . "$HOME/.cargo/env"
 
 complete -C /usr/bin/terraform terraform
