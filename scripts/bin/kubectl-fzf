@@ -1,0 +1,30 @@
+#! /usr/bin/env bash
+#
+# Use FZF to search for K8s resources
+#
+# Note: This assumes the 1st column is always
+# the namespace, if that's not true, this may not work
+# right.
+#
+# TODO: Handle ^^
+
+
+set -euo pipefail
+
+
+resource="${1-pods}"
+
+
+if kubectl api-resources --cached | grep -w "$resource" >/dev/null; then
+    kubectl get $resource --all-namespaces \
+        | fzf \
+            --multi \
+            --header-lines=1 \
+            --bind='ctrl-/:toggle-preview' \
+            --preview="kubectl -n {1} describe $resource {2}" \
+            --preview-window hidden \
+            | awk -v resource=$resource '{ printf("%s/%s\n", resource, $2) }'
+    else
+        echo "Error: $resource is not a valid kubernetes resource" >&2
+        exit 1
+fi
