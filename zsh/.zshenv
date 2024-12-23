@@ -1,9 +1,11 @@
-path+=(
+path=(
 	"$HOME/bin"
 	"$HOME/.local/bin"
+	$path
 )
-fpath+=(
+fpath=(
 	"$HOME/.local/share/zsh/site-functions"  # Install local completion scripts here
+	$fpath
 )
 
 if [ -x "$(command -v nvim)" ]; then
