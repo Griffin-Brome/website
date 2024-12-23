@@ -21,6 +21,7 @@ set path=.
 set path+=**
 set background=dark             " Make sure colours aren't weird when using a dark terminal theme
 set mouse=nv                    " No mouse in insert mode 
+set noswapfile
 
 
 nnoremap Y y$
