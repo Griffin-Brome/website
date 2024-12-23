@@ -5,7 +5,7 @@
 " (_)_/ |_|_| |_| |_|_|  \___|
 "
 
-let mapleader = ','
+let mapleader = ' '
 
 filetype plugin indent on
 syntax on
@@ -17,6 +17,7 @@ set wildmenu
 set wildoptions=pum
 set incsearch
 set hlsearch
+set smartcase
 set splitright
 set splitbelow
 set laststatus=2
@@ -75,9 +76,13 @@ call plug#begin()
 
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-rsi'
+Plug 'christoomey/vim-tmux-navigator'
 
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.

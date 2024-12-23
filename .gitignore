@@ -1,3 +1,4 @@
 .netrwhist
 *.local
 vim/.vim/plugged/
+tmux/.tmux/plugins/

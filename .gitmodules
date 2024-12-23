@@ -19,3 +19,6 @@
 [submodule "vim/.vim/pack/plugins/start/vim-repeat"]
 	path = vim/.vim/pack/plugins/start/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
+[submodule "tmux/.tmux/plugins/tpm"]
+	path = tmux/.tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
