@@ -77,3 +77,5 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # Local config
 source_if_exists "$HOME/.zshrc.local"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
