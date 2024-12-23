@@ -35,11 +35,9 @@ nnoremap <C-l> <C-w>l
 nnoremap j gj
 nnoremap k gk
 
-" Quickly switch buffers - https://vi.stackexchange.com/a/2187
-nnoremap <Leader>b :ls<CR>:b<Space>
-
-" Quckly fuzzy search for files
-nnoremap <Leader>e :e **/*
+nnoremap <C-p> :Files<Cr>
+nnoremap <C-L> :Buffers<Cr>
+nnoremap <C-g> :Git<Cr>
 
 " Netrw (file browser)
 let g:netrw_liststyle=3   " Tree style
