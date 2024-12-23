@@ -1,0 +1,13 @@
+#! /usr/bin/env bash
+#
+# fjq - Use FZF & jq to interactively view a JSON document
+#
+# Thanks to: Peter Benjamin (https://dev.to/pbnj/fzf-jq-interactive-jq-15no)
+
+set -euo pipefail
+
+
+echo '' | fzf \
+    --print-query \
+    --height 100% \
+    --preview "jq -C {q} $1"
