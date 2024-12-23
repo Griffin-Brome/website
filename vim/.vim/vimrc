@@ -10,32 +10,27 @@ let mapleader = ' '
 filetype plugin indent on
 syntax on
 
-set ruler
 set showcmd
 set hidden
-set wildmenu
 set wildoptions=pum
-set incsearch
 set hlsearch
 set smartcase
 set splitright
 set splitbelow
-set laststatus=2
-set expandtab smarttab          " Use spaces instead of tabs, but make it _feel_ like tabs
 set softtabstop=-1              " Use value of 'shiftwidth' to determine indent size
 set path=.
 set path+=**
-set wildignore=*/.git/*,*/venv/*,*.pyc,*/__pycache__/*,*/node_modules/*
-set regexpengine=0
-set foldlevelstart=99           " Start with all folds open
-set backspace=indent,eol,start  " backspace works like other programs
 set background=dark             " Make sure colours aren't weird when using a dark terminal theme
 set mouse=nv                    " No mouse in insert mode 
-set autoindent
 
 
 nnoremap Y y$
 nnoremap <silent> <Leader>l :nohlsearch<CR>
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 nnoremap j gj
 nnoremap k gk
@@ -82,7 +77,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-rsi'
-Plug 'christoomey/vim-tmux-navigator'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
