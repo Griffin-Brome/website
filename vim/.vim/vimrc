@@ -36,7 +36,6 @@ nnoremap j gj
 nnoremap k gk
 
 nnoremap <C-p> :Files<Cr>
-nnoremap <C-L> :Buffers<Cr>
 nnoremap <C-g> :Git<Cr>
 
 " Netrw (file browser)
@@ -75,6 +74,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'nvim-treesitter/nvim-treesitter', Cond(has('nvim'), { 'do': ':TSUpdate' })
 Plug 'neovim/nvim-lspconfig', Cond(has('nvim'))
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'junegunn/fzf.vim'
 
 " Initialize plugin system

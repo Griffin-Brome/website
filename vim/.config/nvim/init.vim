@@ -5,6 +5,7 @@ source ~/.vim/vimrc
 
 set number relativenumber
 set cursorline
+colorscheme catppuccin
 
 lua << EOF
 require'lspconfig'.pylsp.setup{}
