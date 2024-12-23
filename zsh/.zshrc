@@ -35,8 +35,12 @@ PROMPT='%F{3}%3~ ${vcs_info_msg_0_}%f$ '
 
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-source <(kubectl completion zsh)
-source "$HOME/.cargo/env"
+
+command -v kubectl > /dev/null && source <(kubectl completion zsh)
+
+if [[ -a "$HOME/.cargo/env" ]]; then
+        source "$HOME/.cargo/env"
+fi
 
 # Local config
 if [[ -a "$HOME/.zshrc.local" ]]; then

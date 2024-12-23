@@ -20,7 +20,6 @@ set splitbelow
 set laststatus=2
 set expandtab smarttab  " Use spaces instead of tabs, but make it _feel_ like tabs
 set softtabstop=-1  " Use value of 'shiftwidth' to determine indent size
-set tags=tags
 set path=.
 set path+=**
 set wildignore=*/.git/*,*/venv/*,*.pyc,*/__pycache__/*,*/node_modules/*
@@ -29,17 +28,47 @@ set foldlevelstart=99  " Start with all folds open
 set nosmartindent  " 'smart' is a misnomer
 set backspace=indent,eol,start  " backspace works like other programs
 set background=dark  " Make sure colours aren't weird when using a dark terminal theme
-set mouse=a
+set mouse=nv
 
 nnoremap Y y$
 nnoremap <silent> <C-l> :nohlsearch<CR>
 
 nnoremap j gj
 nnoremap k gk
-" Replace the check for a tags file in the parent directory of the current
-" file with a check in every ancestor directory.
-if has('path_extra') && (',' . &g:tags . ',') =~# ',\./tags,'
-  setglobal tags-=./tags tags-=./tags; tags^=./tags;
+
+
+" Install vim-plug if not found
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+
+
+call plug#begin()
+" The default plugin directory will be as follows:
+"   - Vim (Linux/macOS): '~/.vim/plugged'
+"   - Vim (Windows): '~/vimfiles/plugged'
+"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
+" You can specify a custom plugin directory by passing it as the argument
+"   - e.g. `call plug#begin('~/.vim/plugged')`
+"   - Avoid using standard Vim directory names like 'plugin'
+
+" Make sure you use single quotes
+
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
+
+" Initialize plugin system
+" - Automatically executes `filetype plugin indent on` and `syntax enable`.
+call plug#end()
+
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
 
 " vim: fdm=marker sw=2 fdls=-1
