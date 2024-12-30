@@ -80,6 +80,11 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \| PlugInstall --sync | source $MYVIMRC
 \| endif
 
+augroup Resize
+  autocmd!
+  autocmd VimResized * wincmd =
+augroup END
+
 let g:python3_host_prog = $NEOVIM_PYTHON
 let g:loaded_perl_provider = 0
 let g:loaded_ruby_provider = 0
