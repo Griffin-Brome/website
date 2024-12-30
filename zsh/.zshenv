@@ -22,6 +22,7 @@ export HISTFILE=~/.histfile
 export HISTSIZE=1000000000
 export SAVEHIST=1000000000
 export LESS="-RXF"
+export RSYNC_RSH='ssh'
 export NEOVIM_PYTHON=0  # This should be overridden locally
 
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
