@@ -32,6 +32,13 @@ nnoremap <C-p> :Files<Cr>
 nnoremap <C-g> :Git<Cr>
 nnoremap gb :Buffers<Cr>
 
+" Use ripgrep for searching files
+" ref: https://github.com/BurntSushi/ripgrep/issues/425#issuecomment-1299001166
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --no-heading
+  set grepformat+=%f:%l:%c:%m
+endif
+
 " Netrw (file browser)
 let g:netrw_liststyle=3   " Tree style
 
