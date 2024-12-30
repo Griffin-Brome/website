@@ -78,3 +78,8 @@ fi
 if [ -x $(command -v direnv) &>/dev/null ]; then
 	eval "$(direnv hook zsh)"
 fi
+if [ -x "$(command -v pyenv)" ]; then
+	eval "$(pyenv init - zsh)"
+fi
+
+source_if_exists "$HOME/.zshrc.local"

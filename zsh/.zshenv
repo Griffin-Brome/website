@@ -1,6 +1,7 @@
 path=(
 	"$HOME/bin"
 	"$HOME/.local/bin"
+	"$HOME/.pyenv/bin"
 	$path
 )
 fpath=(
