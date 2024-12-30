@@ -19,6 +19,13 @@ function tmux () {
     fi
 }
 
+# Ref: https://github.com/direnv/direnv/wiki/Python#zsh
+function show_virtual_env() {
+	if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
+		echo "($(basename $VIRTUAL_ENV)) "
+	fi
+}
+
 source_if_exists '/usr/share/doc/fzf/examples/key-bindings.zsh'
 source_if_exists '/usr/share/doc/fzf/examples/completion.zsh'
 source_if_exists "$HOME/.cargo/env"
@@ -53,7 +60,7 @@ zstyle ':vcs_info:*' formats       \
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
 zstyle ':vcs_info:*' enable git
 
-PROMPT='%F{3}%3~ ${vcs_info_msg_0_}%f$ '
+PROMPT='$(show_virtual_env)%F{3}%3~ ${vcs_info_msg_0_}%f$ '
 
 if [ -x "$(command -v pyenv)" ]; then
 	eval "$(pyenv init -)"
@@ -67,4 +74,7 @@ alias ls='ls --color=auto'
 alias k='kubectl'
 if [ -x "$(command -v nvim)" ]; then
 	alias vi="nvim"
+fi
+if [ -x $(command -v direnv) &>/dev/null ]; then
+	eval "$(direnv hook zsh)"
 fi
