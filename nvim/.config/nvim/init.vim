@@ -65,18 +65,19 @@ call plug#begin()
 
 " Make sure you use single quotes
 
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'neovim/nvim-lspconfig', Cond(has('nvim'))
+Plug 'nvim-treesitter/nvim-treesitter', Cond(has('nvim'), { 'do': ':TSUpdate' })
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-vinegar'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'nvim-treesitter/nvim-treesitter', Cond(has('nvim'), { 'do': ':TSUpdate' })
-Plug 'neovim/nvim-lspconfig', Cond(has('nvim'))
-Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
-Plug 'junegunn/fzf.vim'
 
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
