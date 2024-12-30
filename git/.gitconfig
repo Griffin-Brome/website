@@ -12,6 +12,7 @@
 	unstage = restore --staged
 	co = checkout
         pt = push --tags
+	rb = rebase
 [pull]
 	rebase = false
 [push]
