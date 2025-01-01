@@ -17,9 +17,14 @@
 	rebase = false
 [push]
 	autoSetupRemote = true
+[pull]
+	rebase = interactive
 [fetch]
 	prune = true
 
 [user]
 	email = 26681097+Griffin-Brome@users.noreply.github.com
 	name = Griffin Brome
+[rebase]
+	autoSquash = true
+	autoStash = true
