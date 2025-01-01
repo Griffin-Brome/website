@@ -78,6 +78,7 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
+Plug 'zbirenbaum/copilot.lua'
 
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
@@ -110,4 +111,12 @@ require'nvim-treesitter.configs'.setup {
   highlight = { enable = true },
   indent = { enable = true }
 }
+require("copilot").setup({
+  suggestion = {
+    auto_trigger = true,
+    keymap = {
+      accept = "<C-o>"
+    }
+  }
+})
 EOF
