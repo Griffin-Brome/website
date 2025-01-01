@@ -66,8 +66,7 @@ call plug#begin()
 " Make sure you use single quotes
 
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'ibhagwan/fzf-lua'
 Plug 'neovim/nvim-lspconfig', Cond(has('nvim'))
 Plug 'nvim-treesitter/nvim-treesitter', Cond(has('nvim'), { 'do': ':TSUpdate' })
 Plug 'tpope/vim-commentary'
@@ -119,4 +118,5 @@ require("copilot").setup({
     }
   }
 })
+require'fzf-lua'.setup({'fzf-vim'})
 EOF
