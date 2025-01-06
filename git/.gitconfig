@@ -13,12 +13,10 @@
 	co = checkout
         pt = push --tags
 	rb = rebase
-[pull]
-	rebase = false
 [push]
 	autoSetupRemote = true
 [pull]
-	rebase = interactive
+	rebase = true
 [fetch]
 	prune = true
 
@@ -28,3 +26,5 @@
 [rebase]
 	autoSquash = true
 	autoStash = true
+[commit]
+	verbose = true
