@@ -17,16 +17,14 @@ function main {
 
     # Setup symbolic links
     echo 'Linking config files to home directory:'
-    echo '====================================================================='
-    for dir in */; do
-        for subdir in $(find "$dir" -mindepth 1 -type d); do
-            mkdir -pv "$HOME/${subdir#*/}"
-        done
-        for file in $(find "$dir" -mindepth 1 -type f); do
-            ln -svf "$PWD/$file" "$HOME/${file#*/}" 
-        done
+    for dir in $(find . -path ./.git -prune -o -type d -maxdepth 1 -mindepth 1 -print); do
+	for subdir in $(find "$dir" -mindepth 1 -type d); do
+	    mkdir -pv $HOME/${subdir#$dir/}
+	done
+	for file in $(find "$dir" -mindepth 1 -type f); do
+	    ln -svf "$(pwd)/${file#./}" "$HOME/${file#$dir/}"
+	done
     done
-    echo '====================================================================='
 
     if [ $SHELL != $(which 'zsh') ] && $(command -v zsh &>/dev/null); then
         echo 'Setting default shell to zsh'
