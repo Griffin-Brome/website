@@ -75,7 +75,7 @@ alias k='kubectl'
 if [ -x "$(command -v nvim)" ]; then
 	alias vi="nvim"
 fi
-if [ -x $(command -v direnv) &>/dev/null ]; then
+if [ -x "$(command -v direnv)" ]; then
 	eval "$(direnv hook zsh)"
 fi
 if [ -x "$(command -v pyenv)" ]; then
